@@ -1,0 +1,361 @@
+@charset 'UTF-8';
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box; /* 不累加邊框與內距 */
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* CSS卷軸滑動效果 */
+/* html,body{
+	scroll-behavior: smooth;
+} */
+
+body {
+	line-height: 1;
+    font-family: /*系統字型設定，依序判斷*/
+/*⻄文*/-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+/*中文*/"蘋方-繁", "PingFang TC", "Noto Sans TC", “黑體-繁", "Heiti TC", “微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+ol, ul {
+	list-style: none;
+	
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 共用區 */
+img{
+    display: block;
+    width: 100%;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/* carousel換圖輪播 */
+.carousel-item{
+    /* 不同單位計算 */
+    height:calc(100vh - 70px);
+}
+.carousel-item img{
+    /* 調整適合容器大小 */
+    object-fit: cover;
+    height: 100%;
+}
+/* navbar */
+.navbar{
+    position: sticky;
+    top:0;
+    left: 0;
+    z-index: 999;
+    height: 70px;
+}
+.navbar-brand{
+    display: block;
+    width: 120px;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
+    color:  rgb(1, 82, 185);
+}
+
+/* 相對於4個字的寬度 */
+/*
+.btn{
+    
+    width: 4rem;
+    font-size: .8rem;
+}
+.btn:hover{
+    color: #FFF;
+}
+*/
+.navbar-toggler{
+    border: none;
+}
+.navbar-toggler:focus{
+    box-shadow: none;
+}
+
+.dropdown-menu, .navbar-collapse{
+    
+    top: auto!important;
+    bottom: 100%;
+}
+
+#search_form{
+    position: relative;
+}
+
+.search_btn{
+    /* 取消btn預設樣式 */
+    background-color: transparent;
+    border: none;
+    /* 自訂樣式 */
+    width: 35px;
+    height: 35px;
+    /* 絕對定位 */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.icon{
+    display: flex;
+    width: 120px;
+    margin-left: 20px;
+}
+.icon li{
+    margin: 0 5px;
+}
+/* Food區 */
+#food{
+    display: flex;
+    height: 380px;
+}
+.food_pt{
+    position: relative;
+    flex: 1;
+    background-image: url('../images/bg_s.jpg');
+    background-size: 100% 100%;
+}
+.food_pt figure{
+    position: absolute;
+}
+#food_1{
+    width: 300px;
+    top: 80px;
+    right: 1000px;
+    /* 動畫名稱 執行速度 延遲時間 動畫方式 重複播放 回播式，both => 不會抓取原本的屬性，直接執行from to */
+    /* animation: food_1 3s both infinite alternate; */
+    animation: 3s both;
+}
+@keyframes food_1 {
+    /* 消失 */
+    from{
+        top: 80px;
+        right: 1000px;
+    }
+    /* 結果 */
+    to{
+        top: 80px;
+        right: -60px;
+    }
+}
+#food_2{
+    width: 250px;
+    top:40px;
+    left: -300px;
+    /* animation: food_2 3s 1s both infinite alternate; */
+    animation: 3s 1s both;
+}
+@keyframes food_2 {
+    from{
+        top: 40px;
+        left: -300px;
+    }
+    to{
+        top: 40px;
+        left: 10%;
+    }
+}
+.food_text{
+    flex: 1;
+    margin: 50px 80px;
+}
+
+.food_text h2{
+    position: relative;
+    /* 區塊與文字同寬 */
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.food_text h2::before{
+    /* content: ''; => 設定before和after時一定要有 */
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #0152b9;
+    position: absolute;
+    bottom: -2px;
+    left: -10px;
+}
+.food_text h2::after{
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: rgba(1, 82, 185,0.5);
+    position: absolute;
+    top:-15px;
+    right:-15px;
+}
+.food_text p{
+    margin: 1rem 0;
+    line-height: 1.5rem;
+}
+
+/* title */
+
+
+.title {
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    border-left: #0152b9 10px solid;
+    padding-left: 1rem;
+    margin: 2rem 0 1rem;
+}
+.title::before{
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 13rem;
+    /* width: 85%; */
+    /* 減號前後一定要加空格 */
+    width: calc(100% - 13rem);
+    height: 2px;
+    background-color: #0152b9;
+}
+.title::after{
+    content: 'ALL';
+    color: #0152b9;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+/* 最新商品 */
+#tabs > div{
+    display: flex;
+    
+}
+#tabs > div > *{
+    /* 均分 */
+    flex: 1;
+    margin: 0 20px;
+}
+#tabs .content > * {
+    margin: 15px 0;
+}
+#tabs .content h1{
+    font-size: 1.2rem;
+}
+#tabs .content data{
+    /* data為行內元素 */
+    display: block;
+    font-size: 2.5rem;
+    line-height: 2rem;
+    border-left: #0152b9 solid 10px;
+    padding-left: 1rem;
+}
+#tabs .content div{
+    /* 整體寬度與文字同寬 */
+    display: inline-block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    background-color: #F9D615;
+    padding: 5px 10px;
+    box-shadow: 2px 2px 0 red;
+}
+/* jquery ui tabs */
+/* ul.ui-tabs-nav */
+.ui-tabs{
+    width: 80%;
+    /* 置中 m0-a */
+    margin: 5vh auto;
+}
+ul.ui-tabs-nav{
+    display: flex;
+}
+
+ul.ui-widget-header {
+    border: none;
+    background: none;
+    
+}
+
+li.ui-state-active, 
+.ui-widget-content .ui-state-active, 
+.ui-widget-header .ui-state-active, 
+a.ui-button:active, 
+.ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #000;
+    background: none;
+}
+
+li.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default, 
+.ui-button, 
+html .ui-button.ui-state-disabled:hover, 
+html .ui-button.ui-state-disabled:active {
+    background: none;
+}
+
+.ui-tabs .ui-tabs-nav li{
+    border-bottom-width: 1px;
+}
+
+li.ui-tabs-tab{
+    border-radius: 3px;
+}
+
+
+/* 所有商品product */
+#product .row > *{
+    padding: 30px 20px;
+    text-align: center;
+}
+#product .row > * > *{
+    margin: 15px 0;
+}
+
+#product .row h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+#product .row p {
+    color: red;
+}
+/* footer區 */
+footer{
+    background-color: #F9D615;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
